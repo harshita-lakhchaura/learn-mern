@@ -5,11 +5,8 @@ const express=require('express');
 const App=express();
 
 dotenv.config({path:'./config.env'})
+require('./db/conn')
 
-const DB=process.env.DATABASE
-mongoose.connect(DB).then(()=>{
-    console.log("Successful")
-}).catch((err)=>console.log('Unsuccessful'))
 
 //middlewar
 const middleware=(req,res,next)=>{
