@@ -6,9 +6,12 @@ const App=express();
 
 dotenv.config({path:'./config.env'})
 require('./db/conn')
+//const User=require('./model/userSchema')
+App.use(express.json())
 
+App.use(require('./router/auth'))
 
-//middlewar
+//middleware
 const middleware=(req,res,next)=>{
     console.log('hello my middleware');
     next();
@@ -17,6 +20,7 @@ const middleware=(req,res,next)=>{
 
 App.get('/',(req,res)=>{
     res.send("Hello from the server")
+    
 })
 App.get('/about',middleware,(req,res)=>{
     console.log('about')
